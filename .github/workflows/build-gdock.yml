@@ -94,7 +94,7 @@ jobs:
         cd release && [[ -d gdock ]] || mkdir gdock
         cd gdock && [[ -d $DISTRIB_REVISION ]] || mkdir $DISTRIB_REVISION
         cd ../../
-        cp -rf ./lean/bin release/gdock/$DISTRIB_REVISION/
+        cp -rf ./lede/bin/* release/gdock/$DISTRIB_REVISION/
         git config --global user.email "yuwenzhen@qq.com"
         git config --global user.name "RexYu"
         echo $(ls -l | awk '/^d/{print $NF}')
