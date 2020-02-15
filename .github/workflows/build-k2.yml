@@ -89,7 +89,7 @@ jobs:
         cd release && [[ -d k2 ]] || mkdir k2
         cd k2 && [[ -d $DISTRIB_REVISION ]] || mkdir $DISTRIB_REVISION
         cd ../../
-        cp -rf ./lean/bin release/k2/$DISTRIB_REVISION/
+        cp -rf ./lede/bin/* release/k2/$DISTRIB_REVISION/
         git config --global user.email "yuwenzhen@qq.com"
         git config --global user.name "RexYu"
         echo $(ls -l | awk '/^d/{print $NF}')
