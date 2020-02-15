@@ -87,14 +87,20 @@ jobs:
         DISTRIB_REVISION=`grep 'DISTRIB_REVISION=' ./lede/package/lean/default-settings/files/zzz-default-settings  | awk -v head="DISTRIB_REVISION='" -v tail="'\"" '{print substr($0, index($0,head)+length(head),index($0,tail)-index($0,head)-length(head))}'`
         [[ -d release ]] || mkdir release
         cd release && [[ -d k2 ]] || mkdir k2
-        cd k2 && [[ -d $DISTRIB_REVISION ]] || mkdir $DISTRIB_REVISION
+        cd k2  && [[ -d $DISTRIB_REVISION ]] || mkdir $DISTRIB_REVISION
         cd ../../
         cp -rf ./lede/bin/* release/k2/$DISTRIB_REVISION/
-        git config --global user.email "yuwenzhen@qq.com"
-        git config --global user.name "RexYu"
+        git config --local user.email "yuwenzhen@qq.com"
+        git config --local user.name "RexYu"
         echo $(ls -l | awk '/^d/{print $NF}')
         git pull
-        git add release
+        git add release 2>&1
         cd release
-        git commit -m 'commit '$DISTRIB_REVISION
-        git push
+        git commit -m 'commit k2 '$DISTRIB_REVISION 
+        
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+        
