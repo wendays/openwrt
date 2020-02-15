@@ -3,7 +3,7 @@
 #   Author: JK
 #=================================================
 
-name: Build G-DOCK
+name: Build K2
 
 on: 
   release:
@@ -79,7 +79,7 @@ jobs:
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: G-DOCK
+        name: K2
         path: ./lede/bin
       
     - name: Push Result
