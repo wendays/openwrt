@@ -84,3 +84,19 @@ jobs:
       with:
         name: G-DOCK
         path: ./lede/bin
+      
+    - name: Push Result
+      run : |
+        DISTRIB_REVISION=`grep 'DISTRIB_REVISION=' ./lede/package/lean/default-settings/files/zzz-default-settings  | awk -v head="DISTRIB_REVISION='" -v tail="'\"" '{print substr($0, index($0,head)+length(head),index($0,tail)-index($0,head)-length(head))}'`
+        [[ -d release ]] || mkdir release
+        cd release && [[ -d gdock ]] || mkdir gdock
+        cd gdock && [[ -d $DISTRIB_REVISION ]] || mkdir $DISTRIB_REVISION
+        cd ../../
+        cp -rf ./lean/bin release/gdock/$DISTRIB_REVISION/
+        git config --global user.email "yuwenzhen@qq.com"
+        git config --global user.name "RexYu"
+        echo $(ls -l | awk '/^d/{print $NF}')
+        git add release
+        cd release
+        git commit -m 'commit '$DISTRIB_REVISION
+        git push
