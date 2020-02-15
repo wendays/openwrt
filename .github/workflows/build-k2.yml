@@ -93,6 +93,7 @@ jobs:
         git config --global user.email "yuwenzhen@qq.com"
         git config --global user.name "RexYu"
         echo $(ls -l | awk '/^d/{print $NF}')
+        git pull
         git add release
         cd release
         git commit -m 'commit '$DISTRIB_REVISION
