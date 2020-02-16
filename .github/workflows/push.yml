@@ -30,7 +30,7 @@ jobs:
       uses: rexyu/action-download-artifact@master
       with:
         github_token: ${{secrets.GITHUB_TOKEN}}
-        workflow: push.yml
+        workflow: build-gdock.yml
         commit: '8e0d5bd3f7c484be46c6b7768ede26a30d6aca24'
         name: G-DOCK
         path: ./bin/gdock
