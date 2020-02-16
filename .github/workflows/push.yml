@@ -22,9 +22,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
       
-    - run: |
-        mkdir bin
-        cd bin && mkdir gdock
+   
+
+
       
     - name: Download artifact
       uses: rexyu/action-download-artifact@master
