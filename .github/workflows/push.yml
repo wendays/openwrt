@@ -1,0 +1,45 @@
+#=====================================
+#   Description: Build G-DOCK FROM LEAN'S LEDE
+#   Author: JK   
+#=================================================
+
+name: Build G-DOCK
+
+on: 
+  release:
+    types: [published]
+  push:
+    branches: 
+      - master
+    paths:
+      - '**/push.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+      
+    - run: |
+        mkdir bin
+        cd bin && mkdir gdock
+      
+    - name: Download artifact
+      uses: rexyu/action-download-artifact@master
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: push.yml
+        commit: '8e0d5bd3f7c484be46c6b7768ede26a30d6aca24'
+        name: G-DOCK
+        path: ./bin/gdock
+        
+    - name: Setup Debug Session
+      run : |
+        git config --global user.email "yuwenzhen@qq.com"
+        git config --global user.name "RexYu"
+        git add bin
+        cd bin 
+        git commit -m 'commit gdock' 
+        git push
