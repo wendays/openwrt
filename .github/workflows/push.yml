@@ -3,7 +3,7 @@
 #   Author: JK   
 #=================================================
 
-name: Build G-DOCK
+name: Build G-DOCK Push
 
 on: 
   release:
@@ -31,7 +31,7 @@ jobs:
       with:
         github_token: ${{secrets.GITHUB_TOKEN}}
         workflow: build-gdock.yml
-        commit: '8e0d5bd3f7c484be46c6b7768ede26a30d6aca24'
+        commit: 'fff823ce24f6103703eace23e9c1200717835372'
         name: G-DOCK
         path: ./bin/gdock
         
