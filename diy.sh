@@ -27,6 +27,12 @@ cp -f ../banner package/base-files/files/etc/
 echo '下载ServerChan'
 git clone https://github.com/tty228/luci-app-serverchan ../diy/luci-app-serverchan
 
+echo '下载luci-app-aliddns'
+git clone https://github.com/chenhw2/luci-app-aliddns.git ../diy/luci-app-aliddns
+pushd ../diy/luci-app-aliddns/tools/po2lmo
+make && sudo make install
+popd
+
 echo '集成diy目录'
 ln -s ../../diy ./package/openwrt-packages
 
